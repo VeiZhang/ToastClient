@@ -207,7 +207,6 @@ public class SystemToast
 				 */
 				mQueue.poll();
 			}
-			mContentView = null;
 		}
 	}
 
