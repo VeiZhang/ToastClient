@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="toast_radius">10dp</dimen>
+    <dimen name="toast_margin_horizontal">10dp</dimen>
+    <dimen name="toast_margin_vertical">10dp</dimen>
+    <dimen name="toast_offset_y">64dp</dimen>
+
+</resources>
