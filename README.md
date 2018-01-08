@@ -7,7 +7,7 @@
 [![Download][icon_download]][download]
 
 ```
-compile/implementation 'com.excellence:toast:1.0.0'
+compile 'com.excellence:toast:1.0.0'
 ```
 
 ## 使用
