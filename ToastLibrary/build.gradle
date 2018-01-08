@@ -70,13 +70,15 @@ tasks.withType(Javadoc) {
 }
 
 /**发布到我的Bintray仓库**/
+def user = getBintrayUser()
 def key = getBintrayKey()
+def org = getUserOrg()
 
 publish {
-    bintrayUser = 'veizhang'
+    bintrayUser = user
     bintrayKey = key
     dryRun = false
-    userOrg = 'veizhang'
+    userOrg = org
     groupId = 'com.excellence'
     artifactId = 'toast'
     publishVersion = '1.0.0'
@@ -86,15 +88,31 @@ publish {
 }
 
 /**读取bintray.key文件的key**/
-def getBintrayKey() {
+
+def getPropertyValue(String key) {
+    if (key == null || key.length() == 0)
+        return null
+
     File file = project.rootProject.file('../../bintray.key')
     if (!file.exists())
         return null
 
-    InputStream inputStream = file.newDataInputStream();
+    InputStream inputStream = file.newDataInputStream()
     Properties properties = new Properties()
     properties.load(inputStream)
 
     //读取Key
-    return properties.getProperty('bintrayKey')
+    return properties.getProperty(key)
+}
+
+def getBintrayUser() {
+    return getPropertyValue('bintrayUser')
+}
+
+def getBintrayKey() {
+    return getPropertyValue('bintrayKey')
+}
+
+def getUserOrg() {
+    return getPropertyValue('userOrg')
 }
