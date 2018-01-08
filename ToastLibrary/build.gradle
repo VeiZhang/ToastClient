@@ -70,9 +70,9 @@ tasks.withType(Javadoc) {
 }
 
 /**发布到我的Bintray仓库**/
-def user = getBintrayUser()
-def key = getBintrayKey()
-def org = getUserOrg()
+def user = getPropertyValue('bintrayUser')
+def key = getPropertyValue('bintrayKey')
+def org = getPropertyValue('userOrg')
 
 publish {
     bintrayUser = user
@@ -103,16 +103,4 @@ def getPropertyValue(String key) {
 
     //读取Key
     return properties.getProperty(key)
-}
-
-def getBintrayUser() {
-    return getPropertyValue('bintrayUser')
-}
-
-def getBintrayKey() {
-    return getPropertyValue('bintrayKey')
-}
-
-def getUserOrg() {
-    return getPropertyValue('userOrg')
 }
