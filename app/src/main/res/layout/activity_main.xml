@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.excellence.toast.sample.MainActivity">
 
-    <TextView
+    <Button
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
