@@ -5,56 +5,46 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
 import android.view.Gravity;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 /**
  * <pre>
  *     author : VeiZhang
  *     blog   : http://tiimor.cn
- *     time   : 2016/12/2
- *     desc   : 始终只显示一个toast
+ *     date   : 2017/10/23
+ *     desc   : customer toast
  * </pre>
  */
 
-public final class InfoNoticeToast extends Toast
+public final class InfoNoticeSystemToast extends SystemToast
 {
 	/**
-	 * Construct an empty Toast object.  You must call {@link #setView} before you
-	 * can call {@link #show}.
+	 * Construct an empty Toast object. You must call {@link #setView} before
+	 * you can call {@link #showMsg}.
 	 *
-	 * @param context The context to use.  Usually your {@link Application}
-	 * or {@link Activity} object.
+	 * @param context
+	 *            The context to use. Usually your {@link Application} or
+	 *            {@link Activity} object.
 	 */
 
 	@SuppressWarnings("unused")
-	private static final String TAG = InfoNoticeToast.class.getSimpleName();
+	private static final String TAG = InfoNoticeSystemToast.class.getSimpleName();
 
-	private static InfoNoticeToast mInstance = null;
+	private static InfoNoticeSystemToast mInstance = null;
 
 	private Context mContext = null;
 	private TextView mContentTextView = null;
 
-	public static InfoNoticeToast getInstance(Context context)
-	{
-		if (mInstance == null)
-		{
-			mInstance = new InfoNoticeToast(context.getApplicationContext());
-		}
-		return mInstance;
-	}
-
-	private InfoNoticeToast(Context context)
+	private InfoNoticeSystemToast(Context context)
 	{
 		super(context);
 		mContext = context;
-		LinearLayout toastLayout = new LinearLayout(context);
-		toastLayout.setOrientation(LinearLayout.HORIZONTAL);
-		toastLayout.setGravity(Gravity.CENTER_VERTICAL);
-		mContentTextView = new TextView(context);
+		RelativeLayout rootLayout = new RelativeLayout(mContext);
+		mContentTextView = new TextView(mContext);
 		int textSize = mContext.getResources().getDimensionPixelOffset(R.dimen.text_size_super_little);
 		int textColor = mContext.getResources().getColor(android.R.color.white);
 		int horizontalPadding = mContext.getResources().getDimensionPixelOffset(R.dimen.padding_small);
@@ -64,43 +54,46 @@ public final class InfoNoticeToast extends Toast
 		setTextBackgroundResource(R.drawable.toast_bg);
 		mContentTextView.setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding);
 		mContentTextView.setGravity(Gravity.CENTER);
-		toastLayout.addView(mContentTextView);
-		setView(toastLayout);
-		setToastDuration(Toast.LENGTH_SHORT);
+		rootLayout.addView(mContentTextView);
+		setView(rootLayout);
+		setDuration(LENGTH_LONG);
 		setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, mContext.getResources().getDimensionPixelOffset(R.dimen.margin_large));
 	}
 
-	public InfoNoticeToast setToastDuration(@Duration int duration)
+	public static InfoNoticeSystemToast getInstance(Context context)
 	{
-		setDuration(duration);
-		return this;
+		if (mInstance == null)
+		{
+			mInstance = new InfoNoticeSystemToast(context.getApplicationContext());
+		}
+		return mInstance;
 	}
 
-	public InfoNoticeToast setText(String text)
+	public InfoNoticeSystemToast setText(String text)
 	{
 		mContentTextView.setText(text);
 		return this;
 	}
 
-	public InfoNoticeToast setTextResId(int resId)
+	public InfoNoticeSystemToast setTextResId(int resId)
 	{
 		mContentTextView.setText(resId);
 		return this;
 	}
 
-	public InfoNoticeToast setTextSize(int size)
+	public InfoNoticeSystemToast setTextSize(int size)
 	{
 		mContentTextView.setTextSize(size);
 		return this;
 	}
 
-	public InfoNoticeToast setTextColor(@ColorInt int color)
+	public InfoNoticeSystemToast setTextColor(@ColorInt int color)
 	{
 		mContentTextView.setTextColor(color);
 		return this;
 	}
 
-	public InfoNoticeToast setTextBackgroundResource(@DrawableRes int resId)
+	public InfoNoticeSystemToast setTextBackgroundResource(@DrawableRes int resId)
 	{
 		mContentTextView.setBackgroundResource(resId);
 		return this;
@@ -127,12 +120,6 @@ public final class InfoNoticeToast extends Toast
 	public void dismiss()
 	{
 		super.cancel();
-	}
-
-	@IntDef({ LENGTH_LONG, LENGTH_SHORT })
-	public @interface Duration
-	{
-
 	}
 
 }
