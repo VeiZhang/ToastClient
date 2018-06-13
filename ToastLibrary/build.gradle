@@ -75,7 +75,7 @@ publish {
     userOrg = org
     groupId = 'com.excellence'
     artifactId = 'toast'
-    publishVersion = '1.0.0'
+    publishVersion = '1.1.0'
     desc = 'Android-Toast工具'
     website = 'https://github.com/VeiZhang/ToastKit'
     licences = ['Apache-2.0']
