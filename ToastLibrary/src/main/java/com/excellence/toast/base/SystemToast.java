@@ -1,9 +1,8 @@
-package com.excellence.toast;
+package com.excellence.toast.base;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Handler;
-import android.support.annotation.IntDef;
 import android.support.annotation.StringRes;
 import android.view.Gravity;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.excellence.toast.R;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;

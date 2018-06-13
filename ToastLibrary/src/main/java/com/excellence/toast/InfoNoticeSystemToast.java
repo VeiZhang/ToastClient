@@ -9,6 +9,8 @@ import android.view.Gravity;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.excellence.toast.base.SystemToast;
+
 import static android.widget.Toast.LENGTH_LONG;
 
 /**
