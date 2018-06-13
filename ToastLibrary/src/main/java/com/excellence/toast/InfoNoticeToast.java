@@ -5,11 +5,11 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
 import android.view.Gravity;
-import android.widget.LinearLayout;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.excellence.toast.base.InfoNoticeBaseToast;
 
 /**
  * <pre>
@@ -20,7 +20,7 @@ import android.widget.Toast;
  * </pre>
  */
 
-public final class InfoNoticeToast extends Toast
+public final class InfoNoticeToast extends InfoNoticeBaseToast
 {
 	/**
 	 * Construct an empty Toast object.  You must call {@link #setView} before you
@@ -35,7 +35,6 @@ public final class InfoNoticeToast extends Toast
 
 	private static InfoNoticeToast mInstance = null;
 
-	private Context mContext = null;
 	private TextView mContentTextView = null;
 
 	public static InfoNoticeToast getInstance(Context context)
@@ -50,11 +49,12 @@ public final class InfoNoticeToast extends Toast
 	private InfoNoticeToast(Context context)
 	{
 		super(context);
-		mContext = context;
-		LinearLayout toastLayout = new LinearLayout(context);
-		toastLayout.setOrientation(LinearLayout.HORIZONTAL);
-		toastLayout.setGravity(Gravity.CENTER_VERTICAL);
-		mContentTextView = new TextView(context);
+		addView(initChildView());
+	}
+
+	private View initChildView()
+	{
+		mContentTextView = new TextView(mContext);
 		int textSize = mContext.getResources().getDimensionPixelOffset(R.dimen.text_size_super_little);
 		int textColor = mContext.getResources().getColor(android.R.color.white);
 		int horizontalPadding = mContext.getResources().getDimensionPixelOffset(R.dimen.padding_small);
@@ -64,16 +64,7 @@ public final class InfoNoticeToast extends Toast
 		setTextBackgroundResource(R.drawable.toast_bg);
 		mContentTextView.setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding);
 		mContentTextView.setGravity(Gravity.CENTER);
-		toastLayout.addView(mContentTextView);
-		setView(toastLayout);
-		setToastDuration(Toast.LENGTH_SHORT);
-		setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, mContext.getResources().getDimensionPixelOffset(R.dimen.margin_large));
-	}
-
-	public InfoNoticeToast setToastDuration(@Duration int duration)
-	{
-		setDuration(duration);
-		return this;
+		return mContentTextView;
 	}
 
 	public InfoNoticeToast setText(String text)
@@ -106,12 +97,6 @@ public final class InfoNoticeToast extends Toast
 		return this;
 	}
 
-	public void showAtLocation(int gravity, int xOffset, int yOffset)
-	{
-		setGravity(gravity, xOffset, yOffset);
-		show();
-	}
-
 	public void showMsg(int resId)
 	{
 		setTextResId(resId);
@@ -122,17 +107,6 @@ public final class InfoNoticeToast extends Toast
 	{
 		setText(str);
 		show();
-	}
-
-	public void dismiss()
-	{
-		super.cancel();
-	}
-
-	@IntDef({ LENGTH_LONG, LENGTH_SHORT })
-	public @interface Duration
-	{
-
 	}
 
 }

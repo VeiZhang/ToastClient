@@ -6,7 +6,6 @@ import android.view.View;
 
 import com.excellence.toast.InfoNoticeSystemToast;
 import com.excellence.toast.InfoNoticeToast;
-import com.excellence.toast.SystemToast;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -22,8 +21,8 @@ public class MainActivity extends AppCompatActivity
 			@Override
 			public void onClick(View v)
 			{
-				// InfoNoticeToast.getInstance(MainActivity.this).showMsg("hello");
-				InfoNoticeSystemToast.getInstance(MainActivity.this).showMsg("hello");
+				InfoNoticeToast.getInstance(MainActivity.this).showMsg("hello");
+				// InfoNoticeSystemToast.getInstance(MainActivity.this).showMsg("hello");
 				// SystemToast.makeText(MainActivity.this, "Toast", SystemToast.TOAST_SHORT).show();
 			}
 		});

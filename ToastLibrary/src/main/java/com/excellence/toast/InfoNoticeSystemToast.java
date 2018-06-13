@@ -8,10 +8,9 @@ import android.support.annotation.DrawableRes;
 import android.view.Gravity;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.excellence.toast.base.SystemToast;
-
-import static android.widget.Toast.LENGTH_LONG;
 
 /**
  * <pre>
@@ -58,7 +57,7 @@ public final class InfoNoticeSystemToast extends SystemToast
 		mContentTextView.setGravity(Gravity.CENTER);
 		rootLayout.addView(mContentTextView);
 		setView(rootLayout);
-		setDuration(LENGTH_LONG);
+		setDuration(Toast.LENGTH_SHORT);
 		setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, mContext.getResources().getDimensionPixelOffset(R.dimen.margin_large));
 	}
 
