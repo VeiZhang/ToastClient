@@ -3,6 +3,8 @@ package com.excellence.toast;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
 import android.view.Gravity;
 import android.widget.LinearLayout;
@@ -54,11 +56,12 @@ public final class InfoNoticeToast extends Toast
 		toastLayout.setGravity(Gravity.CENTER_VERTICAL);
 		mContentTextView = new TextView(context);
 		int textSize = mContext.getResources().getDimensionPixelOffset(R.dimen.text_size_super_little);
+		int textColor = mContext.getResources().getColor(android.R.color.white);
 		int horizontalPadding = mContext.getResources().getDimensionPixelOffset(R.dimen.padding_small);
 		int verticalPadding = mContext.getResources().getDimensionPixelOffset(R.dimen.padding_micro);
-		mContentTextView.setTextSize(textSize);
-		mContentTextView.setTextColor(mContext.getResources().getColor(android.R.color.white));
-		mContentTextView.setBackgroundResource(R.drawable.toast_bg);
+		setTextSize(textSize);
+		setTextColor(textColor);
+		setTextBackgroundResource(R.drawable.toast_bg);
 		mContentTextView.setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding);
 		mContentTextView.setGravity(Gravity.CENTER);
 		toastLayout.addView(mContentTextView);
@@ -79,19 +82,25 @@ public final class InfoNoticeToast extends Toast
 		return this;
 	}
 
-	public InfoNoticeToast setTextSize(int size)
-	{
-		mContentTextView.setTextSize(size);
-		return this;
-	}
-
 	public InfoNoticeToast setTextResId(int resId)
 	{
 		mContentTextView.setText(resId);
 		return this;
 	}
 
-	public InfoNoticeToast setTextBackgroundResId(int resId)
+	public InfoNoticeToast setTextSize(int size)
+	{
+		mContentTextView.setTextSize(size);
+		return this;
+	}
+
+	public InfoNoticeToast setTextColor(@ColorInt int color)
+	{
+		mContentTextView.setTextColor(color);
+		return this;
+	}
+
+	public InfoNoticeToast setTextBackgroundResource(@DrawableRes int resId)
 	{
 		mContentTextView.setBackgroundResource(resId);
 		return this;
