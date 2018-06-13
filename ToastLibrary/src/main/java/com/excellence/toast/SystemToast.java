@@ -74,7 +74,7 @@ public class SystemToast
 		mParams.y = context.getResources().getDimensionPixelOffset(R.dimen.toast_offset_y);
 	}
 
-	public static SystemToast makeText(Context context, CharSequence text, @Duration int duration)
+	public static SystemToast makeText(Context context, CharSequence text, int duration)
 	{
 		SystemToast toast = new SystemToast(context);
 		LinearLayout layout = new LinearLayout(context);
@@ -82,8 +82,8 @@ public class SystemToast
 		layout.setBackgroundResource(R.drawable.toast_bg);
 		TextView textView = new TextView(context);
 		LayoutParams params = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-		int horizontalMargin = context.getResources().getDimensionPixelOffset(R.dimen.toast_margin_horizontal);
-		int verticalMargin = context.getResources().getDimensionPixelOffset(R.dimen.toast_margin_vertical);
+		int horizontalMargin = context.getResources().getDimensionPixelOffset(R.dimen.margin_micro);
+		int verticalMargin = context.getResources().getDimensionPixelOffset(R.dimen.margin_micro);
 		params.setMargins(horizontalMargin, verticalMargin, horizontalMargin, verticalMargin);
 		textView.setId(R.id.toast_text);
 		textView.setLayoutParams(params);
@@ -92,7 +92,7 @@ public class SystemToast
 		layout.addView(textView);
 
 		toast.mContentView = layout;
-		toast.mDuration = duration;
+		toast.setDuration(duration);
 		return toast;
 	}
 
@@ -262,9 +262,4 @@ public class SystemToast
 		}
 	};
 
-	@IntDef({ TOAST_LONG, TOAST_SHORT })
-	public @interface Duration
-	{
-
-	}
 }
