@@ -7,7 +7,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    implementation project(':ToastLibrary')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile 'com.android.support.test:runner:1.0.1'
+    compile project(':ToastLibrary')
 }
